@@ -25,11 +25,11 @@ meta:
 
 # Introductions
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the VuesData API! You can use our API to access VuesData API endpoints, we provide different sets of APIs for Data Extraction from different set of websites and brands (Such as: SteamGames, US Stock Price, Indian Stock Price, BestBuy etc.) You can find different APIs here: .
+
+We currently provide our services through RapidAPI only. You have to register an account on the <a href='https://rapidapi.com/auth/sign-up/'>RapidAPI Sign-Up</a> platform as developer or customer to start using our VuesData APIs. Please check the Quick Start guide on RapidAPI for signup and setting project: <a href='https://docs.rapidapi.com/docs/consumer-quick-start-guide'>RapidAPI Quick Start Guide</a>.
 
 We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
@@ -59,11 +59,11 @@ const kittn = require('kittn');
 let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `meowmeowmeow` with your API key from RapidAPI.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+To authenticate, you have to use the RapidAPI API token/API. Once you subscribe to the plan of API trail/paid, RapidAPI provides you with a API Key/Token to access all the API on our platform. You can generate a API/token key for a new app from your Developer Control Panel of RapidAPI <a href='https://rapidapi.com/developer/'>https://rapidapi.com/developer/</a>.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+RapidAPI expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
