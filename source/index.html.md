@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: VuesData API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
@@ -8,11 +8,8 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://rapidapi.com/developer/'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 
@@ -20,7 +17,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the VuesData API
 ---
 
 # Introductions
@@ -35,28 +32,11 @@ We have language bindings in Shell, Ruby, Python, and JavaScript! You can view c
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
   -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key from RapidAPI.
@@ -79,50 +59,87 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 
 ```ruby
-require 'kittn'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+url = URI("https://steamgames-special-offers.p.rapidapi.com/games_list/?start=0&count=10&region=US")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["X-RapidAPI-Key"] = 'meowmeowmeow'
+request["X-RapidAPI-Host"] = 'steamgames-special-offers.p.rapidapi.com'
+
+response = http.request(request)
+puts response.read_body
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+url = "https://steamgames-special-offers.p.rapidapi.com/games_list/"
+
+querystring = {"start":"0","count":"10","region":"US"}
+
+headers = {
+  "X-RapidAPI-Key": "meowmeowmeow",
+  "X-RapidAPI-Host": "steamgames-special-offers.p.rapidapi.com"
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl --request GET \
+  --url 'https://steamgames-special-offers.p.rapidapi.com/games_list/?start=0&count=10&region=US' \
+  --header 'X-RapidAPI-Host: steamgames-special-offers.p.rapidapi.com' \
+  --header 'X-RapidAPI-Key: meowmeowmeow'
 ```
 
 ```javascript
-const kittn = require('kittn');
+import axios from "axios";
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+const options = {
+  method: 'GET',
+  url: 'https://steamgames-special-offers.p.rapidapi.com/games_list/',
+  params: {start: '0', count: '10', region: 'US'},
+  headers: {
+    'X-RapidAPI-Key': 'meowmeowmeow',
+    'X-RapidAPI-Host': 'steamgames-special-offers.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "games_list": [
+    1351080,
+    1203220,
+    489830,
+    924970,
+    1894430,
+    239140,
+    1817070,
+    976310,
+    518790,
+    1498570
+  ],
+  "possible_has_more": true,
+  "total_games": 6294
+}
 ```
 
 This endpoint retrieves all games that are on Special Offers here: <a href='https://store.steampowered.com/search/?specials=1'>https://store.steampowered.com/search/?specials=1</a>
@@ -145,40 +162,77 @@ region | US | For now, we are only extracting the games list from US. However it
 ### /games_data/?app_id=<app_id>
 
 ```ruby
-require 'kittn'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+url = URI("https://steamgames-special-offers.p.rapidapi.com/games_data/?app_id=1581770")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["X-RapidAPI-Key"] = 'meowmeowmeow'
+request["X-RapidAPI-Host"] = 'steamgames-special-offers.p.rapidapi.com'
+
+response = http.request(request)
+puts response.read_body
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+url = "https://steamgames-special-offers.p.rapidapi.com/games_data/"
+
+querystring = {"app_id":"1581770"}
+
+headers = {
+  "X-RapidAPI-Key": "meowmeowmeow",
+  "X-RapidAPI-Host": "steamgames-special-offers.p.rapidapi.com"
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl --request GET \
+  --url 'https://steamgames-special-offers.p.rapidapi.com/games_data/?app_id=1581770' \
+  --header 'X-RapidAPI-Host: steamgames-special-offers.p.rapidapi.com' \
+  --header 'X-RapidAPI-Key: meowmeowmeow'
 ```
 
 ```javascript
-const kittn = require('kittn');
+import axios from "axios";
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+const options = {
+  method: 'GET',
+  url: 'https://steamgames-special-offers.p.rapidapi.com/games_data/',
+  params: {app_id: '1581770'},
+  headers: {
+    'X-RapidAPI-Key': 'meowmeowmeow',
+    'X-RapidAPI-Host': 'steamgames-special-offers.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "discount": "-80%",
+  "original_price": "$49.99",
+  "price": "$9.99",
+  "title": "Mortal Kombat 11",
+  "url": "https://store.steampowered.com/app/976310/"
 }
 ```
 
