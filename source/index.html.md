@@ -75,6 +75,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 ## Get All Games.
 
+### /games_list/?start=0&count=10&region=US
+
+
 ```ruby
 require 'kittn'
 
@@ -126,20 +129,20 @@ This endpoint retrieves all games that are on Special Offers here: <a href='http
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://steamgames-special-offers.p.rapidapi.com/games_list/?start=0&count=10&region=US`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+start | 0 | Min Value should be 0 as it is starting of the list.
+count | 10 | Max Value should not be more than 100 as it is max number of games you can retrieve at a time, limit set by Steam.
+region | US | For now, we are only extracting the games list from US. However it does not affect the games that are on offer. It only affects the pricing conversion as per the country.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
+## Get a Specific Game Data.
+
+### /games_data/?app_id=<app_id>
 
 ```ruby
 require 'kittn'
@@ -179,67 +182,15 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific Game Data with Game Name, Price, Discount Percent and Discount Price.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://steamgames-special-offers.p.rapidapi.com/games_data/?app_id=1581770`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+app_id | The app_id of the game that you have retrieved from the GamesList API above.
