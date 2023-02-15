@@ -71,9 +71,9 @@ RapidAPI expects for the API key to be included in all API requests to the serve
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# SteamGames Special Offers API
 
-## Get All Kittens
+## Get All Games.
 
 ```ruby
 require 'kittn'
@@ -122,7 +122,7 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all games that are on Special Offers here: <a href='https://store.steampowered.com/search/?specials=1'>https://store.steampowered.com/search/?specials=1</a>
 
 ### HTTP Request
 
