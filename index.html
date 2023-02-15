@@ -322,10 +322,10 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#steamgames-special-offers-api" class="toc-h1 toc-link" data-title="SteamGames Special Offers API">SteamGames Special Offers API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#get-all-games" class="toc-h2 toc-link" data-title="Get All Games.">Get All Games.</a>
                   </li>
                   <li>
                     <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
@@ -383,7 +383,7 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='steamgames-special-offers-api'>SteamGames Special Offers API</h1><h2 id='get-all-games'>Get All Games.</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
@@ -418,7 +418,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all games that are on Special Offers here: <a href='https://store.steampowered.com/search/?specials=1'>https://store.steampowered.com/search/?specials=1</a></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
